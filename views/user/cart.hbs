@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <title>Vegge ecomm</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   <script
+              src="https://code.jquery.com/jquery-3.2.1.js"
+              integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+              crossorigin="anonymous"></script>
+
+      <!-- Latest compiled and minified CSS & JS -->
+      <link rel="stylesheet" media="screen"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+<!-- vegeefoods -->
+   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="assets/css/aos.css">
+
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="assets/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/icomoon.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{!-- <script src="http://malsup.github.com/jquery.form.js"></script> --}}
+    
+
+  </head>
+  <body class="goto-here">
+		<div class="py-1 bg-primary">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+ 1235 2355 98</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">youremail@email.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="/">Vegefoods</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+	          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="/shop">Shop</a>
+              	{{!-- <a class="dropdown-item" href="wishlist.html">Wishlist</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a> --}}
+                 <a class="dropdown-item" href="/cart">Cart</a>
+                <a class="dropdown-item" href="/checkout">Checkout</a>
+              </div>
+            </li>
+	          {{!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> --}}
+	          <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span><span class="badge badge-light">{{cartCount}}</span></a></li>
+			   {{#if user}}
+			  <li class="nav-item"><a href="/userprofile" class="nav-link">View Profile</a></li>
+			   {{/if}}
+               <li class="nav-item"><a href="/" class="nav-link">{{#if user}}
+			  {{user.name}}
+			  {{/if}}</a></li>
+			   {{#if user}}
+			   <li class="nav-item"><a href="/logout" class="nav-link btn btn-success">User Logout</a></li>
+			  {{else}}
+			  <li class="nav-item"><a href="/user/login" class="nav-link btn btn-success">User Login</a></li>
+			  {{/if}}
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap hero-bread" style="background-image: url('assets/images/bg_1.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+            <h1 class="mb-0 bread">My Cart</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+
+    <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>&nbsp;</th>
+						        <th>Product details</th>
+						        <th>Price</th>
+						        <th>Quantity</th>
+                                {{!-- <th>category</th>
+						        <th>Total</th> --}}
+						      </tr>
+						    </thead>
+						    <tbody>
+                                {{#each products}}
+						      <tr class="text-center">
+								
+						        <td class="product-remove"><a href="/remove-product" onclick="removeproduct( '{{this._id}}','{{this.product._id}}')"><span class="ion-ios-close"></span></a></td>
+						        
+						        <td class="image-prod"><img style="width: 50px; height:50px" src="/product-images/{{this.product._id}}.jpg"></td>
+						        <td class="product-name">
+						        	<h3>{{this.product.name}}</h3>
+								
+						        	{{!-- <p>{{this.description}}</p> --}}
+						        </td>
+						        	{{#if this.product.status}}
+
+									<td class="price">Rs{{this.product.disPrice}}</td>
+									{{else}}
+
+						        <td class="price">Rs{{this.product.price}}</td>
+						         {{/if}}
+						        <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<button class="quantity form-control input-number" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)" >-</button> 
+									  <span id="{{this.product._id}}">{{this.quantity}}</span>
+									 <button class="quantity form-control input-number" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
+					          	</div>
+					          </td>
+						        {{!-- <td class="category">{{this.category}}</td> --}}
+						        {{!-- <td class="total">$4.90</td> --}}
+						      </tr><!-- END TR-->
+
+						      {{/each}}
+						    </tbody>
+							<a href="/user/remove-coupon/{{user._id}}" class="btn btn-success float-right p-3">Remove coupon offer</a>
+						  </table>
+						  <hr>
+						  <div class="float-right pr-5">
+
+							  
+						  <h3 class="float-left mr-5">Total.Rs <span id="total">{{totalValue}}</span></h3><br>
+						 
+
+						  
+						   {{#if couponDis}}
+						  <h3 class="float-left mr-5">Coupon Applied Discount.Rs <span id="coupdis">{{couponDis}}</span></h3><br>
+						  {{/if}}
+						  <h3 class="float-left mr-3">Final Total.Rs <span id="offertotal">{{offerPro}}</span></h3>
+						  
+
+						  <a href="/checkout" class="btn btn-success mt-3" style="width:100%;">Place order</a>
+					  </div>
+					  </div>
+    			</div>
+				<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+					
+    				<div class="cart-total mb-3">
+						<p class="text-success">{{coupErr}}</p>
+    					<h2><b>Offer Coupon</b></h2>
+
+						{{#if appCoup}}
+
+						<a href="/user/remove-coupon/{{user._id}}" class="btn btn-success float-right p-3">Remove coupon offer</a>
+{{else}}
+  					<form  id="apply-coupon" method="post">	
+	              <div class="form-group">
+	              	<p>Enter your coupon code if you have one</p>
+	                <input type="text" class="form-control text-left px-3" name="coupon"  placeholder="Enter your coupon here">
+					<button type="submit"  class="btn btn-success text-white" >Apply Coupon</button>
+	              </div>
+	             </form>
+				 {{/if}}
+    				</div>
+    				
+					 
+    			</div>
+    		</div>
+			
+    		
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+
+
+
+<script>
+	function changeQuantity(cartId,proId,userId,count,offerprice){
+		let quantity=parseInt(document.getElementById(proId).innerHTML)
+		$.ajax({
+			url:'/change-product-quantity',
+			data:{
+				user:userId,
+				cart:cartId,
+				product:proId,
+				count:count,
+				quantity:quantity
+			},
+			method:'post',
+			success:(response)=>{
+				if(response.removeProduct){
+                			swal({
+  title: "Product removed!",
+  text: "product removed from cart!",
+  icon: "Removed",
+  button: "Ok!",
+});
+				location.reload()
+				}
+				else{
+					document.getElementById(proId).innerHTML=quantity+count
+					document.getElementById('total').innerHTML=response.total
+					document.getElementById('offertotal').innerHTML=response.offerPro
+					document.getElementById('coupdis').innerHTML=response.disCoup
+					
+					
+					
+
+				}
+				
+			}
+		})
+	}
+</script>
+
+<script>
+	function removeproduct(cartId, item) {
+    // let remove = parseInt(document.getElementById(item).innerHTML)
+
+    $.ajax({
+        url: '/remove-product',
+         method: 'post',
+         
+        data: {
+            cart: cartId,
+            product: item,
+        },
+        success: (response) => {
+     if(response.removeProduct)
+            
+			swal({
+  title: "Product removed!",
+  text: "product removed from cart!",
+  icon: "Removed",
+  button: "Ok!",
+});
+            location.reload()
+        
+        
+           
+        }
+    })
+}
+</script>
+
+ </script>
+ <script>
+	 $("#apply-coupon").submit((e)=>{
+    console.log('hdusgdsg');
+    e.preventDefault()
+    $.ajax({
+        url:'/user/apply-coupon',
+        method:'post',
+        data: $('#apply-coupon').serialize(),
+        success:(response)=>{
+            if(response.status){
+				
+                
+                location.reload()
+				swal("coupon applied Successfully!", "success");
+                
+            }else{
+				alert('coupon not found')
+                location.reload()
+
+			}
+        }
+        
+    })
+
+})
+ </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+   <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.easing.1.3.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.stellar.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/jquery.animateNumber.min.js"></script>
+  <script src="assets/js/bootstrap-datepicker.js"></script>
+  <script src="assets/js/scrollax.min.js"></script>
+  {{!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="assets/js/google-map.js"></script> --}}
+  <script src="assets/js/main.js"></script>
+
+ 
+  </body>
+</html>
