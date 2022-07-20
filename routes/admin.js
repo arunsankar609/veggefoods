@@ -1,4 +1,5 @@
 var express = require('express');
+const res = require('express/lib/response');
 const { status } = require('express/lib/response');
 const async = require('hbs/lib/async');
 const { Db } = require('mongodb');
@@ -62,13 +63,14 @@ router.get('/logout', function(req, res, next) {
 router.get('/panel',verifyLogin,async function(req, res, next) {
   let adminWall=await productHelper.getAdminData()
   let totalCount= await userHelper.getAdminOrderCount()
+  let totalwallet=await userHelper.getTotalwallet()
   let codTotal= await userHelper.getTotalCOD()
   let razorpayTotal=await userHelper.getTotalRazorpay()
   let paypalTotal=await userHelper.getTotalPaypal()
   let totalObatinedAmount=await userHelper.getAlltotalPayedAmount()
   console.log('3333333333333333333333');
   console.log(totalObatinedAmount);
-  res.render('admin/html/index',{admin:true,totalCount,codTotal,razorpayTotal,paypalTotal,totalObatinedAmount,adminWall});
+  res.render('admin/html/index',{admin:true,totalCount,codTotal,razorpayTotal,paypalTotal,totalObatinedAmount,adminWall,totalwallet});
   
 });
 
@@ -227,9 +229,18 @@ router.post('/html/edit-category/:id',(req,res)=>{
 
       router.get('/allorders',verifyLogin,async(req,res)=>{
         userHelper.getAllUserOrders().then((orders)=>{
+          console.log('xxxxxxxxxxx000000');
+          console.log(orders);
           res.render('admin/html/all-userorders',{orders})
         })
        
+      })
+
+      router.get('/view-orderedadmin/:id',async(req,res)=>{
+        let products=await userHelper.getOrderedProducts(req.params.id)
+        console.log('qwqwqqwqw');
+        console.log(products);
+         res.render('admin/html/view-checkorderedproducts',{products})
       })
 
       router.get('/html/cancelAorder/:id',(req,res)=> {

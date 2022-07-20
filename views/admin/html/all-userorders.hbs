@@ -459,6 +459,7 @@
                          <th scope="col">Amount</th>
                          <th scope="col">Status</th>
                           {{!-- <th scope="col">Password</th> --}}
+                          <th scope="col">View Orders</th>
                             <th scope="col">Cancel Order</th>
                              <th scope="col">Order Status</th>
                             
@@ -488,6 +489,64 @@
        {{/if}}
 </td>
        --}}
+       <td>
+        <!-- Button trigger modal -->
+<!-- Button trigger modal -->
+
+<form action="/admin/view-orderedadmin/{{this._id}}" method="get">
+<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#b{{this._id}}">
+  View Order
+</button>
+</form>
+
+
+<!-- Modal -->
+{{#each products}}
+<div class="modal fade" id="b{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Items</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <section class="ftco-section">
+      <div class="container text-center" >
+        <div class="row">
+        
+            <h1 class="text-success">Your Ordered Products</h1>
+        
+     
+<div class="col-md-3 p-3">
+   		  
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/product-images/{{this.product._id}}.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{this.products.name}}</h5>
+    <p class="card-text">Rs.{{this.products.price}}</p>
+    <p class="card-text">Quantity:{{this.quantity}}</p>
+    <p class="card-text">{{this.products.description}}</p>
+    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  </div>
+</div>
+</div>
+
+</div>
+ </div>
+         
+    </section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+       
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+       </td>
        <td> 
         {{#if this.status}} 
         <a href="/admin/html/cancelAorder/{{this._id}}" class="btn btn-primary" >cancel order</a>

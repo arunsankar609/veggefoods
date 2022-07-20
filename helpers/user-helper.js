@@ -779,6 +779,24 @@ resolve()
                 resolve(total)
             })
         },
+        getTotalwallet:()=>{
+            return new Promise((resolve,reject)=>{
+                let total= db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                    {
+                        $match:{
+                            paymentMethod:"Wallet"
+                        }
+                    },{
+                        $group:{
+                            _id:null,
+                            total:{$sum:'$totalAmount'}
+                        }
+                    }
+                ]).toArray()
+                resolve(total)
+            })
+        },
+
         getAlltotalPayedAmount:()=>{
             return new Promise(async(resolve,reject)=>{
              let total= await db.get().collection(collection.ORDER_COLLECTION).aggregate([

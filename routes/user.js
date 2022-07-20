@@ -397,6 +397,8 @@ router.get('/successorder',async(req,res)=>{
 
 router.get('/orderedproducts/:id',async(req,res)=>{
    let products=await userHelper.getOrderedProducts(req.params.id)
+   console.log('qwqwqqwqwqwqwq');
+   console.log(products);
   console.log(req.params.id)
   res.render('user/orderedproducts',{user:req.session.user,products})
 })

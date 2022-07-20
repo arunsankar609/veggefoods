@@ -189,22 +189,6 @@
                 </li>
                 </li>
                 </ul>
-<li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">User Banners</div>
-              </a>
-
-              <ul class="menu-sub">
-                <li class="menu-item">
-                 
-                  <a href="/admin/addbanners" class="menu-link">
-                    <div data-i18n="Without menu">Add Banner</div>
-                  </a>
-                  
-                </li>
-                </li>
-                </ul>
 
                 <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -217,6 +201,23 @@
                  
                   <a href="/admin/referals" class="menu-link">
                     <div data-i18n="Without menu">View Referal Codes</div>
+                  </a>
+                  
+                </li>
+                </li>
+                </ul>
+
+<li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">User Banners</div>
+              </a>
+
+              <ul class="menu-sub">
+                <li class="menu-item">
+                 
+                  <a href="/admin/addbanners" class="menu-link">
+                    <div data-i18n="Without menu">Add Banner</div>
                   </a>
                   
                 </li>
@@ -276,7 +277,7 @@
                 </ul>
             
 
-            <li class="menu-header small text-uppercase">
+            {{!-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>
             </li>
             <li class="menu-item">
@@ -325,7 +326,7 @@
                 </li>
               </ul>
             </li>
-          </ul>
+          </ul> --}}
         </aside>
         <!-- / Menu -->
 
@@ -442,69 +443,51 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              {{!-- <form action="/admin/date-range" method="post">
-                <label for="">From</label>
-                <input name="date" type="date">
-                <label for="">To</label>
-                <input name="end" type="date">
-                <button type="submit" class="btn btn-info">find</button>
-              </form> --}}
-              <button class="btn btn-success" id="pdf">Download Invoice</button>
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Sales Report</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Users  orders</h4>
 
               <!-- Basic Bootstrap Table -->
-              <div class="card">
-                <h5 class="card-header">Sales Report</h5>
-                
-                <div class="table-responsive text-nowrap">
-                  <table class="table" id="report">
-                    <thead>
-                      <tr>
-                        <th scope="col">Date</th>
-                         <th scope="col">user id</th>
-                         <th scope="col">Name</th>
-                         <th scope="col">Order status</th>
-                          <th scope="col">Payment Method</th>
-                            <th scope="col">Order Amount</th>
-                            
-                      </tr>
-                    </thead>
-                     <tbody>
-    {{#each orders}}
-    <tr>
-       <td>{{this.date}}</td>
-       <td>{{this.userId}}</td>
-      <td>{{this.deliveryDetails.name}}</td>
-      <td>{{this.status}}</td>
-      <td>{{this.paymentMethod}}</td>
-      <td>Rs.{{this.totalAmount}}</td>
+             
+{{!-- <div class="modal fade" id="b{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Items</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+        <section class="ftco-section">
+      <div class="container text-center" >
+        
+        
+            <h1 class="text-success">Your Ordered Products</h1>
+        
+     
+<div class="col-md-3 p-3">
+    <div class="row">
+   	 {{#each products}}	  
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/product-images/{{this.product._id}}.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{this.product.name}}</h5>
+    <p class="card-text">Rs.{{this.product.price}}</p>
+    <p class="card-text">Quantity:{{this.quantity}}</p>
+    <p class="card-text">{{this.product.description}}</p>
+    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  </div>
+</div>
+{{/each}}
+</div>
+
+</div>
+ </div>
+         
+    </section>
+      </div>
       
-      {{!-- <td><a class="btn btn-primary" href="/admin/edit-user/{{this._id}}">Status</a></td> --}}
-     </tr>
-    {{/each}}
-    
-   
-  </tbody>
-                  </table>
-{{!-- total-table --}}
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-{{#each amount}}
-    <tr>
-      <td>Total Order Amount=Rs.{{this.total}}</td>
-    </tr>
-    {{/each}}
+    </div>
+  </div>
+</div>
 
-  </tbody>
-
-</table>
-                </div>
-              </div>
               <!--/ Basic Bootstrap Table -->
 
               <hr class="my-5" />
@@ -524,33 +507,12 @@
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
-
-<script>
-
-
-  window.onload=function(){
-        console.log('haiiiiiiiiiiiiiiiii');
-        document.getElementById('pdf').addEventListener('click',()=>{
-          const pdf=this.document.getElementById('report')
-          console.log(pdf);
-          console.log(window);
-          let opt = {
-            margin:       0,
-            filename:     'Report.pdf',
-            image:        { type: 'jpg', quality: 0.98 },
-            html2canvas:  { scale: 4 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
-          };
-          
-          html2pdf().from(pdf).set(opt).save();
-        })}
-</script>
-
-                  {{!-- <script>
+                  <script>
   $(document).ready(function(){
     $('#usersTable').DataTable();
   });
-</script> --}}
+</script>
+               
                 </div>
                 <div>
                   <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
@@ -601,7 +563,6 @@
     <script src="/Admin-files/assets/vendor/libs/popper/popper.js"></script>
     <script src="/Admin-files/assets/vendor/js/bootstrap.js"></script>
     <script src="/Admin-files/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="/Admin-files/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
