@@ -471,9 +471,14 @@ router.get('/cancelorder/:id', function(req, res, next) {
     })
   })
   router.post('/addAddress',(req,res)=>{
-    userHelper.addAddress(req.session.user._id,req.body).then(()=>{
-      res.redirect('/userprofile')
-    })
+    try{
+      userHelper.addAddress(req.session.user._id,req.body).then(()=>{
+        res.redirect('/userprofile')
+      })
+    }catch(err){
+      
+    }
+    
   })
 
   router.get('/getaddressdetails',(req,res)=>{
@@ -574,6 +579,9 @@ productHelper.removeCouponOffer(req.params.id).then(()=>{
     })
   })
 
+  router.get('/404',(req,res)=>{
+    res.render('404')
+  })
   
 
 
