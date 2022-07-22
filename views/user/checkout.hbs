@@ -122,9 +122,9 @@
       </div>
     </div>
 
-	{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Select Address
-</button> --}}
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,35 +138,48 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-	 
-	  <form id="choose-address">
+	 {{#each address}}
+	  <form action="/choose-address" method="post">
 	   <div class="modal-body">
-		  {{#each address}}
+		  
 		  	<div class="form-check">
-  <input class="form-check-input" type="radio" name="selectaddress" id="addressselection">
-  <label class="form-check-label" for="flexRadioDefault1">
+				<input type="text" name="addressid" value="{{this._id}}" hidden>
+  {{!-- <input class=""  name="selectaddress" id="addressselection"> --}}
+  {{!-- <label class="form-check-label" for="flexRadioDefault1"> --}}
     <h4>
-		address:{{this._id}}<br>
+		{{!-- address:{{this._id}}<br> --}}
 		Name: {{this.address.name}} <br>
 		City: {{this.address.city}},<br>
 		State: {{this.address.state}},<br>
 		Pin: {{this.address.pin}},<br>
-		Address: {{this.address.Address}}
+		Address: {{this.address.Address}},<br>
+		phone: {{this.address.phone}},<br>
+		Email:{{this.address.Address}}
+		<input type="text" name="name" value="{{this.address.name}}"hidden>
+		<input type="text" name="city" value="{{this.address.city}}"hidden>
+		<input type="text" name="state" value="{{this.address.state}}"hidden>
+		<input type="text" name="pin" value="{{this.address.pin}}"hidden>
+		<input type="text" name="Address" value="{{this.address.Address}}"hidden>
+		<input type="text" name="email" value="{{this.address.email}}"hidden>
+		<input type="text" name="phone" value="{{this.address.phone}}"hidden>
+		
 	</h4>
   </label>
+  <button type="submit" class="btn btn-primary">Select Address</button>
 </div>
- {{/each}}
+
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Select Address</button>
+        
       </div>
 	 </form>
+	  {{/each}}
     </div>
   </div>
 </div>
-<script>
+{{!-- <script>
 	 $("#choose-address").submit((e)=>{
     console.log('hdusgdsg');
     e.preventDefault()
@@ -187,7 +200,7 @@
     })
 
 })
- </script>
+ </script> --}}
 
     <section class="ftco-section">
       <div class="container">
@@ -200,7 +213,7 @@
 	          		<div class="col-md-12">
 	                <div class="form-group">
 	                	<label for="firstname">User Name</label>
-	                  <input type="text" class="form-control" placeholder="" value="{{address.name}}" id="username" name="username" required>
+	                  <input type="text" class="form-control" placeholder="" value="{{fillAdddress.name}}" id="username" name="username" required>
 	                </div>
 	              </div>
 				  <div class="col-md-12">
@@ -241,7 +254,7 @@
 		            <div class="col-md-12">
 		            	<div class="form-group">
 	                	<label for="streetaddress">Street Address</label>
-	                  <input type="text" class="form-control" placeholder="House number and street name" value="{{address.Address}}" name="address" id="address" required >
+	                  <input type="text" class="form-control" placeholder="House number and street name" value="{{fillAdddress.Address}}" name="address" id="address" required >
 	                </div>
 		            </div>
 
@@ -261,42 +274,42 @@
 		            <div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="postcodezip">Postcode / ZIP *</label>
-	                  <input type="text" class="form-control" placeholder="" name="pincode" value="{{address.pin}}" id="pincode" required >
+	                  <input type="text" class="form-control" placeholder="" name="pincode" value="{{fillAdddress.pin}}" id="pincode" required >
 	                </div>
 		            </div>
 					<div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="postcodezip">State</label>
-	                  <input type="text" class="form-control" placeholder="" value="{{address.state}}" name="state" id="state" required >
+	                  <input type="text" class="form-control" placeholder="" value="{{fillAdddress.state}}" name="state" id="state" required >
 	                </div>
 		            </div>
 					<div class="col-md-6">
 		            	<div class="form-group">
 		            		<label for="city">City</label>
-	                  <input type="text" class="form-control" placeholder="" value="{{address.city}}" name="City" id="City" required>
+	                  <input type="text" class="form-control" placeholder="" value="{{fillAdddress.city}}" name="City" id="City" required>
 	                </div>
 		            </div>
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="phone">Phone</label>
-	                  <input type="number" class="form-control" placeholder="" name="phone" id="phone" required>
+	                  <input type="number" class="form-control" placeholder="" value="{{fillAdddress.phone}}" name="phone" id="phone" required>
 	                </div>
 	              </div>
 	              <div class="col-md-12">
 	                <div class="form-group">
 	                	<label for="emailaddress">Email Address</label>
-	                  <input type="text" class="form-control" placeholder="" name="email" id="email" required>
+	                  <input type="text" class="form-control" placeholder="" value="{{fillAdddress.email}}" name="email" id="email" required>
 	                </div>
                 </div>
                 <div class="w-100"></div>
                 <div class="col-md-12">
-                	<div class="form-group mt-4">
+                	{{!-- <div class="form-group mt-4">
 										<div class="radio">
 										  <label class="mr-3"><input type="radio" name="optradio"> Create an Account? </label>
 										  <label><input type="radio" name="optradio"> Ship to different address</label>
 										</div>
-									</div>
+									</div> --}}
                 </div>
 	            </div>
 	          <!-- END -->

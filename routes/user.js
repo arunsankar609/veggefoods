@@ -256,6 +256,7 @@ router.post('/remove-product',(req,res,next)=>{
   })
 
   router.get('/checkout',verifyLogin,async(req,res)=>{
+   let fillAdddress=req.session.addresss
    let address= await userHelper.getUserAddress(req.session.user._id)
    await userHelper.getTotalAmount(req.session.user._id).then(async(total)=>{
       let offerPro=await userHelper.getOfferTotalAmount(req.session.user._id)
@@ -277,9 +278,9 @@ router.post('/remove-product',(req,res,next)=>{
        cAmount=(total*coupo.offerpercent)/100
         total=total-cAmount
         // let appliedwallet=await userHelper.findAppliedWallet(req.session.user._id)
-      res.render('user/checkout',{total,user:req.session.user,address,userwallet,walletZ,checkwallet})
+      res.render('user/checkout',{total,user:req.session.user,address,userwallet,walletZ,checkwallet,fillAdddress})
       }else{
-      res.render('user/checkout',{total,user:req.session.user,address,userwallet,walletZ,checkwallet})
+      res.render('user/checkout',{total,user:req.session.user,address,userwallet,walletZ,checkwallet,fillAdddress})
       }
     })
    
@@ -533,16 +534,22 @@ router.get('/downloadinvoice',async(req,res)=>{
     })
   })
 
-  router.post('/choose-address/:id',async(req,res)=>{
-  await  userHelper.selectedAddress(req.params.id).then((response)=>{
-      console.log('xxzxzzxzz');
-      console.log(req.params.id);
-   response.user=req.session.user._id
+//   router.post('/choose-address',async(req,res)=>{
+//  await  userHelper.selectedAddress().then((response)=>{
+//       console.log('xxzxzzxzz');
+//       console.log(req.body);
+//    response.user=req.session.user._id
       
-      res.json(response)
-    })
-  })
-
+//       res.json(response)
+//    })
+//   })
+  router.post('/choose-address',async(req,res)=>{
+    // await  userHelper.selectedAddress().then((response)=>{
+         req.session.addresss=req.body
+         
+         res.redirect('/checkout')
+          
+     })
   router.post('/apply-coupon',(req,res)=>{
   userHelper.applyCoupon(req.body,req.session.user._id).then((response)=>{
     
